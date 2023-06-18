@@ -3,6 +3,7 @@ const express = require("express");
 
 const mongoose = require("mongoose");
 const noticeBoardRouter = require("./routerModule");
+const noticeBoardMiddleware = require("./noticeboardRouterMiddlewere");
 
 mongoose.connect(process.env.CONNECTION_STRING, {
   useNewUrlParser: true,
@@ -14,7 +15,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/", noticeBoardRouter);
+app.use("/", noticeBoardMiddleware, noticeBoardRouter);
 
 app.use((error, req, res, next) => {
   res.send(error.message);

@@ -1,9 +1,9 @@
 const User = require("./userModel");
 
 const authorizationMiddleware = async (req, res, next) => {
-  const [login, password] = req.headers.authorization.split(":");
+  const [username, password] = req.headers.authorization.split(":");
   const user = await User.findOne({
-    login: login,
+    username: username,
     password: password,
   });
 

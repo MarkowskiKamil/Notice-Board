@@ -9,10 +9,7 @@ const query = require("./query");
 
 router.get("/noticeboard", async (req, res, next) => {
   try {
-    const notices = await Notice.find(query(req.query)).populate({
-      path: "Notice",
-      select: "-_id",
-    });
+    const notices = await Notice.find(query(req.query));
 
     res.send(notices);
   } catch (error) {
@@ -22,10 +19,19 @@ router.get("/noticeboard", async (req, res, next) => {
 
 router.get("/noticeboard/:id", async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const notice = await Notice.findById(id).populate({
-      path: "Notice",
-      select: "-_id",
+    const id  = req.params.id;
+    const notice = await Notice.findById(id);
+
+    res.format({
+      "text/plain": () => {
+        res.send(`Title: ${notice.title}\nDescription: ${notice.description}`);
+      },
+      "text/html": () => {
+        res.send(`<h1>${notice.title}</h1><p>${notice.description}</p>`);
+      },
+      "application/json": () => {
+        res.send(notice);
+      },
     });
     res.send(notice);
   } catch (error) {
@@ -33,12 +39,9 @@ router.get("/noticeboard/:id", async (req, res, next) => {
   }
 });
 
-router.post("/noticeboard", authorizationMiddleware, async (req, res, next) => {
+router.post("/noticeboard",authorizationMiddleware, async (req, res, next) => {
   try {
-    const notice = new Notice(req.body).populate({
-      path: "Notice",
-      select: "-_id",
-    });
+    const notice = new Notice(req.body)
     notice.user = req.user;
     await notice.save();
     res.send(notice);
@@ -67,12 +70,13 @@ router.patch(
       const id = req.params.id;
       const updateNotice = await Notice.findByIdAndUpdate(
         id,
-        { notice: req.body.notice },
+        { title: req.body.title,
+          description: req.body.description,
+          category: req.body.category,
+          tags: req.body.tags,
+          price: req.body.price },
         { omitUndefined: true }
-      ).populate({
-        path: "Notice",
-        select: "-_id",
-      });
+      )
 
       updateNotice.save();
 
@@ -82,5 +86,10 @@ router.patch(
     }
   }
 );
+
+router.get("/heartbeat", (req, res) => {
+  const currentDate = new Date();
+  res.send(`Current date and time: ${currentDate}`);
+});
 
 module.exports = router;
