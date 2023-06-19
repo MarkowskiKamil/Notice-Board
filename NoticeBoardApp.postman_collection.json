@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "e15977d8-e2b1-4852-ae0b-9716eb30d5f9",
+		"name": "NoticeBoardApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all notices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/noticeboard",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one notice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/noticeboard/648c52abf5776f5442a928bb",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard",
+						"648c52abf5776f5442a928bb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new notice",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "kmarkowski:kmarkowski",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Sprzedam 2kg saletry amonowej\",\r\n  \"description\": \"Sprzedam 2kg saletry amonowej\",\r\n  \"author\": \"648c5324b931b66881d7aac9\",\r\n  \"category\": \"Sprzedaż\",\r\n  \"tags\": [\"saletra\", \"sprzedam\"],\r\n  \"price\": 26.37,\r\n  \"created\": \"2023-05-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/noticeboard",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete notice",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "kmarkowski:kmarkowski",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/noticeboard/648c565eae7dd1d1a0ef1e97",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard",
+						"648c565eae7dd1d1a0ef1e97"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update notice",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "kmarkowski:kmarkowski",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"price\": 150.99}"
+				},
+				"url": {
+					"raw": "localhost:4000/noticeboard/648c52abf5776f5442a928bb",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard",
+						"648c52abf5776f5442a928bb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get notice by year",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/noticeboard?created=year",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard"
+					],
+					"query": [
+						{
+							"key": "created",
+							"value": "year"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get notice by month",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/noticeboard?created=month",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard"
+					],
+					"query": [
+						{
+							"key": "created",
+							"value": "month"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get notice by category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/noticeboard?category=Sprzedaż",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "Sprzedaż"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get notice by price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/noticeboard?price=200",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard"
+					],
+					"query": [
+						{
+							"key": "price",
+							"value": "200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get notice by title",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/noticeboard?title=sprzedam",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"noticeboard"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "sprzedam"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "heartbeat",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/heartbeat",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"heartbeat"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
